@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,6 @@
             box-sizing: border-box;
         }
 
-        /* 全局設定 - 大尺寸基礎字體，支援縮放 */
         :root {
             --primary: #00f2ff;
             --primary-glow: rgba(0, 242, 255, 0.4);
@@ -38,7 +37,6 @@
             padding: 2rem 1.5rem;
         }
 
-        /* 大背景氛圍 - 未來感網格 */
         body::before {
             content: "";
             position: fixed;
@@ -59,13 +57,13 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
         }
 
-        /* 主標題區 */
+        /* 主標題 */
         .hero {
             text-align: center;
             margin-bottom: 1.8rem;
@@ -93,7 +91,7 @@
             letter-spacing: 1px;
         }
 
-        /* ========= 免費聲明區塊 · 極度醒目 開宗明義 ========= */
+        /* 免費聲明 醒目 */
         .free-notice {
             margin: 1.2rem auto 2rem auto;
             background: var(--warning-bg);
@@ -102,14 +100,8 @@
             border-radius: 2rem;
             padding: 1.2rem 1.8rem;
             text-align: center;
-            max-width: 1000px;
+            max-width: 1100px;
             box-shadow: 0 0 20px rgba(255, 80, 40, 0.3);
-            transition: all 0.2s;
-        }
-
-        .free-notice:hover {
-            border-color: #ff8866;
-            box-shadow: 0 0 28px rgba(255, 80, 40, 0.5);
         }
 
         .notice-icon {
@@ -122,13 +114,12 @@
         .notice-text {
             font-size: 1.7rem;
             font-weight: 800;
-            letter-spacing: -0.3px;
-            display: inline-block;
-            vertical-align: middle;
             background: linear-gradient(135deg, #fff3c9, #ffb347);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         .notice-sub {
@@ -142,42 +133,30 @@
             background: #ff5e4a20;
             padding: 0.1rem 0.4rem;
             border-radius: 20px;
-            font-weight: 800;
         }
 
-        @media (max-width: 700px) {
-            .notice-text {
-                font-size: 1.2rem;
-                display: block;
-                margin-top: 0.2rem;
-            }
-            .notice-icon {
-                font-size: 1.8rem;
-            }
-            .notice-sub {
-                font-size: 1rem;
-            }
-            .free-notice {
-                padding: 1rem;
-            }
-        }
-
-        /* 三大區塊 */
-        .steps-grid {
+        /* 橫式三步驟區域 — 使用 flex 水平排列 */
+        .steps-horizontal {
             display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-            margin-bottom: 3rem;
+            flex-direction: row;
+            justify-content: center;
+            align-items: stretch;
+            gap: 1.5rem;
+            margin: 2rem 0 2rem;
+            flex-wrap: wrap; /* 手機版自動換行變垂直 */
         }
 
         .step-card {
+            flex: 1;
+            min-width: 280px;
             background: var(--card-bg);
             backdrop-filter: blur(14px);
             border-radius: 2rem;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 0.5px rgba(0, 242, 255, 0.1) inset;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .step-card:hover {
@@ -187,58 +166,94 @@
         }
 
         .step-header {
-            padding: 1.6rem 2rem 0.8rem 2rem;
+            padding: 1.4rem 1.5rem 0.8rem 1.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            justify-content: space-between;
         }
 
         .step-title-group {
             display: flex;
             align-items: baseline;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
+            margin-bottom: 0.3rem;
         }
 
         .step-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             font-family: monospace;
             background: linear-gradient(145deg, #fff, var(--step-color));
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            opacity: 0.9;
         }
 
         .step-name {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 600;
             letter-spacing: -0.3px;
         }
 
         .step-desc {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--text-dim);
-            padding-top: 0.25rem;
+            margin-top: 0.3rem;
         }
 
         .iframe-wrapper {
-            padding: 1.5rem 2rem 2rem 2rem;
+            padding: 1rem 1.5rem 1.8rem 1.5rem;
             background: rgba(0, 0, 0, 0.2);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .tool-iframe {
             width: 100%;
-            height: 550px;
+            height: 480px;
             border: 0;
             border-radius: 1.2rem;
             background: #fefefe;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
+        /* 箭頭裝飾（大螢幕顯示在卡片之間） */
+        .arrow-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--primary);
+            text-shadow: 0 0 8px rgba(0,242,255,0.6);
+            width: 60px;
+            flex-shrink: 0;
+        }
+
+        /* 大螢幕時顯示箭頭，手機隱藏並靠間距區隔 */
+        @media (min-width: 1000px) {
+            .steps-horizontal {
+                flex-wrap: nowrap;
+            }
+            .arrow-connector {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 999px) {
+            .arrow-connector {
+                display: none; /* 手機版不顯示箭頭，自然垂直排列 */
+            }
+            .steps-horizontal {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .tool-iframe {
+                height: 500px;
+            }
+        }
+
+        /* 其他響應式 */
         @media (max-width: 780px) {
             body {
                 padding: 1rem;
@@ -250,51 +265,29 @@
                 font-size: 1rem;
             }
             .step-name {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             .step-number {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
-            .step-header {
-                padding: 1rem 1.2rem 0.5rem 1.2rem;
+            .notice-text {
+                font-size: 1.2rem;
             }
-            .iframe-wrapper {
-                padding: 1rem;
-            }
-            .tool-iframe {
-                height: 480px;
+            .notice-sub {
+                font-size: 1rem;
             }
         }
 
-        @media (max-width: 550px) {
-            .tool-iframe {
-                height: 520px;
-            }
-            .step-title-group {
-                flex-direction: column;
-                gap: 0.2rem;
-            }
-        }
-
-        .step-card[data-step="1"] {
-            --step-color: var(--step-1);
-            border-top: 3px solid var(--step-1);
-        }
-        .step-card[data-step="2"] {
-            --step-color: var(--step-2);
-            border-top: 3px solid var(--step-2);
-        }
-        .step-card[data-step="3"] {
-            --step-color: var(--step-3);
-            border-top: 3px solid var(--step-3);
-        }
+        .step-card[data-step="1"] { --step-color: var(--step-1); border-top: 3px solid var(--step-1); }
+        .step-card[data-step="2"] { --step-color: var(--step-2); border-top: 3px solid var(--step-2); }
+        .step-card[data-step="3"] { --step-color: var(--step-3); border-top: 3px solid var(--step-3); }
 
         .flow-note {
             display: flex;
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
-            margin: 2rem auto 1rem;
+            margin: 1rem auto 1rem;
             padding: 0.8rem 1rem;
             background: rgba(0, 0, 0, 0.4);
             border-radius: 60px;
@@ -302,41 +295,36 @@
             backdrop-filter: blur(8px);
         }
 
-        .flow-note span {
-            font-size: 1rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
         .footer {
             text-align: center;
-            margin-top: 4rem;
+            margin-top: 3rem;
             padding: 1.5rem;
             font-size: 0.9rem;
             color: var(--text-dim);
             border-top: 1px solid rgba(255,255,255,0.05);
         }
-
         .footer .free-reminder {
             font-size: 1rem;
             color: #ffb347;
             margin-top: 0.5rem;
-            font-weight: 500;
+        }
+        button, .btn, input, select, textarea {
+            font-size: 1rem !important;
+        }
+        :focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 3px;
         }
     </style>
 </head>
 <body>
-
 <div class="container">
-    <!-- 主視覺 -->
     <div class="hero">
         <h1>⟡ RENEW 180 ⟡</h1>
-        <div class="tagline">工作經歷整合入口 · 三部曲流暢再造</div>
+        <div class="tagline">工作經歷整合入口 · 橫向流程三部曲</div>
     </div>
 
-    <!-- ⚡ 開宗明義 · 防詐騙｜完全免費聲明（最顯眼位置）⚡ -->
+    <!-- 免費防詐騙聲明 -->
     <div class="free-notice">
         <div>
             <span class="notice-icon">🚨🔔⚠️</span>
@@ -349,18 +337,9 @@
         </div>
     </div>
 
-    <!-- 流程引導 -->
-    <div class="flow-note">
-        <span>📁 <i>步驟①</i> 選取經歷區間</span>
-        <span>⚡ ➜</span>
-        <span>📄 <i>步驟②</i> 提取 QP 三頁模板</span>
-        <span>⚡ ➜</span>
-        <span>✨ <i>步驟③</i> 自動填表＆產生</span>
-    </div>
-
-    <!-- 三大區域 依序使用 -->
-    <div class="steps-grid">
-        <!-- 區域 1: mechexperience -->
+    <!-- 橫式流程 ① → ② → ③ -->
+    <div class="steps-horizontal">
+        <!-- 步驟 1 -->
         <div class="step-card" data-step="1">
             <div class="step-header">
                 <div class="step-title-group">
@@ -370,11 +349,14 @@
                 <div class="step-desc">上傳 Excel ｜ 抓取 HR_CD 與 ACTUAL_START_DT 區間</div>
             </div>
             <div class="iframe-wrapper">
-                <iframe class="tool-iframe" src="https://thankscal.github.io/mechexperience/" title="180經歷選擇器 - 步驟1"></iframe>
+                <iframe class="tool-iframe" src="https://thankscal.github.io/mechexperience/" title="180經歷選擇器"></iframe>
             </div>
         </div>
 
-        <!-- 區域 2: docxdel -->
+        <!-- 箭頭 -->
+        <div class="arrow-connector">➡</div>
+
+        <!-- 步驟 2 -->
         <div class="step-card" data-step="2">
             <div class="step-header">
                 <div class="step-title-group">
@@ -384,11 +366,13 @@
                 <div class="step-desc">上傳 .docx → 自動提取三頁完整 QP 模板</div>
             </div>
             <div class="iframe-wrapper">
-                <iframe class="tool-iframe" src="https://thankscal.github.io/docxdel/" title="QP06M8003F8-R10 提取工具 - 步驟2"></iframe>
+                <iframe class="tool-iframe" src="https://thankscal.github.io/docxdel/" title="QP提取工具"></iframe>
             </div>
         </div>
 
-        <!-- 區域 3: renewuse -->
+        <div class="arrow-connector">➡</div>
+
+        <!-- 步驟 3 -->
         <div class="step-card" data-step="3">
             <div class="step-header">
                 <div class="step-title-group">
@@ -398,42 +382,32 @@
                 <div class="step-desc">上傳三頁 QP 模板 ＋ 工作經歷 Excel → 一鍵完成</div>
             </div>
             <div class="iframe-wrapper">
-                <iframe class="tool-iframe" src="https://thankscal.github.io/renewuse/" title="工作經歷自動填表系統 - 步驟3"></iframe>
+                <iframe class="tool-iframe" src="https://thankscal.github.io/renewuse/" title="自動填表系統"></iframe>
             </div>
         </div>
     </div>
 
+    <div class="flow-note">
+        <span>📁 ① 選取經歷區間</span>
+        <span>⚡ ➜</span>
+        <span>📄 ② 提取 QP 模板</span>
+        <span>⚡ ➜</span>
+        <span>✨ ③ 自動填表產生</span>
+    </div>
+
     <div class="footer">
-        <p>⚡ 依序使用三個區域：① 產出經歷資料 → ② 取得 QP 模板 → ③ 自動填寫完整工作經歷</p>
+        <p>⚡ 依序使用三個工具：① → ② → ③ 橫向完成工作經歷自動化流程</p>
         <p class="free-reminder">🔒 再次提醒：RENEW 180 工具鏈「完全免費使用」，任何收費行為皆屬詐騙，請立即檢舉。</p>
-        <p style="margin-top: 0.8rem; font-size: 0.8rem;">RENEW 180 · 跨世代團隊協作入口 · 清晰 直覺 未來設計</p>
+        <p style="margin-top: 0.8rem;">RENEW 180 · 跨世代團隊協作入口 · 簡潔 未來 橫向直覺</p>
     </div>
 </div>
-
 <script>
-    // 簡單確保 iframe 載入背景友善，並強化提醒
+    // iframe 載入輔助，確保背景色
     document.querySelectorAll('.tool-iframe').forEach(iframe => {
         iframe.addEventListener('load', function() {
-            try {
-                iframe.style.backgroundColor = '#ffffff';
-            } catch(e) {}
+            try { iframe.style.backgroundColor = '#ffffff'; } catch(e) {}
         });
     });
-    // 提升無障礙與點擊舒適度
-    const style = document.createElement('style');
-    style.textContent = `
-        button, .btn, input, select, textarea {
-            font-size: 1rem !important;
-        }
-        :focus-visible {
-            outline: 3px solid var(--primary);
-            outline-offset: 3px;
-        }
-        .free-notice {
-            cursor: default;
-        }
-    `;
-    document.head.appendChild(style);
 </script>
 </body>
 </html>
