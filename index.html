@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>RENEW 180 · 工作經歷整合網｜完全免費 絕不收費</title>
     <style>
+        /* ===== 全域重置 & 變數 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -16,7 +17,7 @@
             --primary-glow: rgba(0, 242, 255, 0.4);
             --secondary: #b380ff;
             --dark-bg: #0a0c14;
-            --card-bg: rgba(15, 20, 35, 0.65);
+            --card-bg: rgba(15, 20, 35, 0.70);
             --glass-border: rgba(0, 242, 255, 0.2);
             --text-main: #f0f3fa;
             --text-dim: #a0b3d9;
@@ -26,15 +27,16 @@
             --step-3: #2effb0;
             --warning-bg: rgba(255, 80, 40, 0.2);
             --warning-border: #ff5e4a;
+            --link-card-radius: 1.8rem;
         }
 
         body {
             background: radial-gradient(circle at 20% 0%, #0e1a2f, #04070c);
             font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
             color: var(--text-main);
-            line-height: 1.5;
+            line-height: 1.6;
             min-height: 100vh;
-            padding: 2rem 1.5rem;
+            padding: 1.8rem 1.5rem 2rem;
         }
 
         body::before {
@@ -44,9 +46,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 242, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 242, 255, 0.08) 1px, transparent 1px);
+            background-image:
+                linear-gradient(rgba(0, 242, 255, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 255, 0.07) 1px, transparent 1px);
             background-size: 40px 40px;
             pointer-events: none;
             z-index: 0;
@@ -63,56 +65,240 @@
             z-index: 2;
         }
 
-        /* 主標題 */
+        /* ===== 字體放大 (全站) ===== */
+        body,
+        button,
+        input,
+        select,
+        textarea,
+        .btn {
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 780px) {
+            body {
+                padding: 0.8rem 0.8rem 1.5rem;
+            }
+            body,
+            button,
+            input,
+            select,
+            textarea,
+            .btn {
+                font-size: 1rem;
+            }
+        }
+
+        /* ===== 頂部三大連結卡片 (最上面) ===== */
+        .quick-links {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: stretch;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-link-card {
+            flex: 1;
+            min-width: 240px;
+            max-width: 420px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border-radius: var(--link-card-radius);
+            border: 2px solid var(--glass-border);
+            padding: 1.8rem 1.8rem 1.8rem;
+            transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: var(--text-main);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .quick-link-card::after {
+            content: "↗";
+            position: absolute;
+            top: 1rem;
+            right: 1.4rem;
+            font-size: 2.2rem;
+            opacity: 0.2;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            color: var(--primary);
+        }
+
+        .quick-link-card:hover::after {
+            opacity: 0.9;
+            transform: translate(4px, -4px);
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 2px var(--step-color) inset;
+            border-color: var(--step-color);
+        }
+
+        /* 各卡片主題色 */
+        .quick-link-card[data-step="1"] {
+            --step-color: var(--step-1);
+            border-top: 5px solid var(--step-1);
+        }
+        .quick-link-card[data-step="2"] {
+            --step-color: var(--step-2);
+            border-top: 5px solid var(--step-2);
+        }
+        .quick-link-card[data-step="3"] {
+            --step-color: var(--step-3);
+            border-top: 5px solid var(--step-3);
+        }
+
+        .ql-number {
+            font-size: 2.6rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(145deg, #fff, var(--step-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+
+        .ql-name {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+            margin-bottom: 0.3rem;
+        }
+
+        .ql-desc {
+            font-size: 1rem;
+            color: var(--text-dim);
+            margin-bottom: 0.6rem;
+        }
+
+        .ql-url {
+            font-size: 0.95rem;
+            color: var(--primary);
+            background: rgba(0, 242, 255, 0.08);
+            padding: 0.4rem 0.9rem;
+            border-radius: 60px;
+            display: inline-block;
+            word-break: break-all;
+            border: 1px solid rgba(0, 242, 255, 0.15);
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        .ql-url small {
+            font-weight: 300;
+            opacity: 0.6;
+            font-size: 0.8rem;
+        }
+
+        .ql-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 0.2rem;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 780px) {
+            .quick-link-card {
+                min-width: 100%;
+                max-width: 100%;
+                padding: 1.4rem 1.4rem 1.4rem;
+            }
+            .ql-number {
+                font-size: 2.2rem;
+            }
+            .ql-name {
+                font-size: 1.6rem;
+            }
+            .ql-desc {
+                font-size: 0.95rem;
+            }
+            .ql-url {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.7rem;
+            }
+            .quick-link-card::after {
+                font-size: 1.8rem;
+                top: 0.8rem;
+                right: 1rem;
+            }
+        }
+
+        /* ===== Hero ===== */
         .hero {
             text-align: center;
-            margin-bottom: 1.8rem;
-            padding: 1.5rem 1rem 0.5rem;
+            margin-bottom: 1.5rem;
+            padding: 0.8rem 1rem 0.2rem;
         }
 
         .hero h1 {
-            font-size: 4.2rem;
+            font-size: 4.6rem;
             font-weight: 700;
             letter-spacing: -0.02em;
             background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            text-shadow: 0 0 25px rgba(0, 242, 255, 0.3);
-            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+            margin-bottom: 0.3rem;
         }
 
         .hero .tagline {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--text-dim);
             border-top: 1px solid var(--glass-border);
             display: inline-block;
-            padding-top: 1rem;
+            padding-top: 0.8rem;
             letter-spacing: 1px;
         }
 
-        /* 免費聲明 醒目 */
+        @media (max-width: 780px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* ===== 免費聲明 ===== */
         .free-notice {
             margin: 1.2rem auto 2rem auto;
             background: var(--warning-bg);
             backdrop-filter: blur(12px);
             border: 2px solid var(--warning-border);
-            border-radius: 2rem;
+            border-radius: 2.4rem;
             padding: 1.2rem 1.8rem;
             text-align: center;
             max-width: 1100px;
-            box-shadow: 0 0 20px rgba(255, 80, 40, 0.3);
+            box-shadow: 0 0 25px rgba(255, 80, 40, 0.25);
         }
 
         .notice-icon {
-            font-size: 2.2rem;
+            font-size: 2.6rem;
             display: inline-block;
-            margin-right: 0.8rem;
+            margin-right: 0.6rem;
             vertical-align: middle;
         }
 
         .notice-text {
-            font-size: 1.7rem;
+            font-size: 1.9rem;
             font-weight: 800;
             background: linear-gradient(135deg, #fff3c9, #ffb347);
             background-clip: text;
@@ -123,19 +309,35 @@
         }
 
         .notice-sub {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
             margin-top: 0.4rem;
             color: #ffcf9a;
         }
 
         .notice-sub strong {
-            background: #ff5e4a20;
-            padding: 0.1rem 0.4rem;
-            border-radius: 20px;
+            background: #ff5e4a30;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
         }
 
-        /* 橫式三步驟區域 — 使用 flex 水平排列 */
+        @media (max-width: 780px) {
+            .notice-text {
+                font-size: 1.4rem;
+            }
+            .notice-sub {
+                font-size: 1.05rem;
+            }
+            .notice-icon {
+                font-size: 2rem;
+            }
+            .free-notice {
+                padding: 1rem 1.2rem;
+                border-radius: 1.8rem;
+            }
+        }
+
+        /* ===== 三步驟 (橫式) ===== */
         .steps-horizontal {
             display: flex;
             flex-direction: row;
@@ -143,7 +345,7 @@
             align-items: stretch;
             gap: 1.5rem;
             margin: 2rem 0 2rem;
-            flex-wrap: wrap; /* 手機版自動換行變垂直 */
+            flex-wrap: wrap;
         }
 
         .step-card {
@@ -175,13 +377,13 @@
             align-items: baseline;
             gap: 0.8rem;
             flex-wrap: wrap;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
 
         .step-number {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            font-family: monospace;
+            font-family: 'JetBrains Mono', monospace;
             background: linear-gradient(145deg, #fff, var(--step-color));
             background-clip: text;
             -webkit-background-clip: text;
@@ -189,15 +391,15 @@
         }
 
         .step-name {
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 600;
             letter-spacing: -0.3px;
         }
 
         .step-desc {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--text-dim);
-            margin-top: 0.3rem;
+            margin-top: 0.2rem;
         }
 
         .iframe-wrapper {
@@ -210,27 +412,38 @@
 
         .tool-iframe {
             width: 100%;
-            height: 480px;
+            height: 500px;
             border: 0;
             border-radius: 1.2rem;
             background: #fefefe;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* 箭頭裝飾（大螢幕顯示在卡片之間） */
+        .step-card[data-step="1"] {
+            --step-color: var(--step-1);
+            border-top: 3px solid var(--step-1);
+        }
+        .step-card[data-step="2"] {
+            --step-color: var(--step-2);
+            border-top: 3px solid var(--step-2);
+        }
+        .step-card[data-step="3"] {
+            --step-color: var(--step-3);
+            border-top: 3px solid var(--step-3);
+        }
+
         .arrow-connector {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 300;
             color: var(--primary);
-            text-shadow: 0 0 8px rgba(0,242,255,0.6);
+            text-shadow: 0 0 12px rgba(0, 242, 255, 0.5);
             width: 60px;
             flex-shrink: 0;
         }
 
-        /* 大螢幕時顯示箭頭，手機隱藏並靠間距區隔 */
         @media (min-width: 1000px) {
             .steps-horizontal {
                 flex-wrap: nowrap;
@@ -242,172 +455,274 @@
 
         @media (max-width: 999px) {
             .arrow-connector {
-                display: none; /* 手機版不顯示箭頭，自然垂直排列 */
+                display: none;
             }
             .steps-horizontal {
                 flex-direction: column;
                 gap: 2rem;
             }
             .tool-iframe {
-                height: 500px;
+                height: 460px;
             }
         }
 
-        /* 其他響應式 */
         @media (max-width: 780px) {
-            body {
-                padding: 1rem;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero .tagline {
-                font-size: 1rem;
+            .step-card {
+                min-width: 100%;
             }
             .step-name {
                 font-size: 1.4rem;
             }
             .step-number {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
-            .notice-text {
-                font-size: 1.2rem;
+            .step-desc {
+                font-size: 0.9rem;
             }
-            .notice-sub {
-                font-size: 1rem;
+            .tool-iframe {
+                height: 400px;
+            }
+            .step-header {
+                padding: 1rem 1.2rem 0.6rem 1.2rem;
+            }
+            .iframe-wrapper {
+                padding: 0.8rem 1.2rem 1.4rem 1.2rem;
             }
         }
 
-        .step-card[data-step="1"] { --step-color: var(--step-1); border-top: 3px solid var(--step-1); }
-        .step-card[data-step="2"] { --step-color: var(--step-2); border-top: 3px solid var(--step-2); }
-        .step-card[data-step="3"] { --step-color: var(--step-3); border-top: 3px solid var(--step-3); }
-
+        /* ===== 流程小標 ===== */
         .flow-note {
             display: flex;
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
-            margin: 1rem auto 1rem;
-            padding: 0.8rem 1rem;
+            margin: 0.5rem auto 1rem;
+            padding: 0.8rem 1.5rem;
             background: rgba(0, 0, 0, 0.4);
             border-radius: 60px;
             width: fit-content;
             backdrop-filter: blur(8px);
+            font-size: 1.05rem;
         }
 
+        @media (max-width: 780px) {
+            .flow-note {
+                font-size: 0.9rem;
+                gap: 0.8rem;
+                padding: 0.6rem 1.2rem;
+            }
+        }
+
+        /* ===== Footer ===== */
         .footer {
             text-align: center;
             margin-top: 3rem;
             padding: 1.5rem;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        .footer .free-reminder {
             font-size: 1rem;
+            color: var(--text-dim);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer .free-reminder {
+            font-size: 1.15rem;
             color: #ffb347;
             margin-top: 0.5rem;
         }
-        button, .btn, input, select, textarea {
+
+        @media (max-width: 780px) {
+            .footer {
+                font-size: 0.9rem;
+                padding: 1rem 0.5rem;
+            }
+            .footer .free-reminder {
+                font-size: 1rem;
+            }
+        }
+
+        /* ===== 通用工具 ===== */
+        button,
+        .btn,
+        input,
+        select,
+        textarea {
             font-size: 1rem !important;
         }
+
         :focus-visible {
             outline: 3px solid var(--primary);
             outline-offset: 3px;
         }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* 輔助：讓所有 iframe 背景白 */
+        .tool-iframe {
+            background: #ffffff;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="hero">
-        <h1>⟡ RENEW 180 ⟡</h1>
-        <div class="tagline">工作經歷整合入口 · 橫向流程三部曲</div>
+    <div class="container">
+
+        <!-- ========================================================= -->
+        <!-- ① 最上面：三個大連結卡片 (快速入口)                        -->
+        <!-- ========================================================= -->
+        <div class="quick-links">
+
+            <!-- 卡片 1 -->
+            <a class="quick-link-card" data-step="1"
+            href="https://thankscal.github.io/mechexperience/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="點擊前往「經歷區間選擇器」">
+            <div class="ql-number">01</div>
+            <div class="ql-name">經歷區間選擇器</div>
+            <div class="ql-desc">上傳 Excel ｜ 抓取 HR_CD 與 ACTUAL_START_DT 區間</div>
+            <span class="ql-url">thankscal.github.io/mechexperience/</span>
+            <span class="ql-badge">↗ 新視窗開啟</span>
+        </a>
+
+        <!-- 卡片 2 -->
+        <a class="quick-link-card" data-step="2"
+        href="https://thankscal.github.io/docxdel/"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="點擊前往「QP 模板提取器」">
+        <div class="ql-number">02</div>
+        <div class="ql-name">QP 模板提取器</div>
+        <div class="ql-desc">上傳 .docx → 自動提取三頁完整 QP 模板</div>
+        <span class="ql-url">thankscal.github.io/docxdel/</span>
+        <span class="ql-badge">↗ 新視窗開啟</span>
+    </a>
+
+    <!-- 卡片 3 -->
+    <a class="quick-link-card" data-step="3"
+    href="https://thankscal.github.io/renewuse/"
+    target="_blank"
+    rel="noopener noreferrer"
+    title="點擊前往「工作經歷自動填表」">
+    <div class="ql-number">03</div>
+    <div class="ql-name">工作經歷自動填表</div>
+    <div class="ql-desc">上傳三頁 QP 模板 ＋ 工作經歷 Excel → 一鍵完成</div>
+    <span class="ql-url">thankscal.github.io/renewuse/</span>
+    <span class="ql-badge">↗ 新視窗開啟</span>
+</a>
+
+</div>
+<!-- /quick-links -->
+
+<!-- ========================================================= -->
+<!-- ② Hero 標題                                             -->
+<!-- ========================================================= -->
+<div class="hero">
+    <h1>⟡ RENEW 180 ⟡</h1>
+    <div class="tagline">工作經歷整合入口 · 橫向流程三部曲</div>
+</div>
+
+<!-- ========================================================= -->
+<!-- ③ 免費防詐騙聲明                                        -->
+<!-- ========================================================= -->
+<div class="free-notice">
+    <div>
+        <span class="notice-icon">🚨🔔⚠️</span>
+        <span class="notice-text">【 永久免費 · 絕不收費 】</span>
     </div>
-
-    <!-- 免費防詐騙聲明 -->
-    <div class="free-notice">
-        <div>
-            <span class="notice-icon">🚨🔔⚠️</span>
-            <span class="notice-text">【 永久免費 · 絕不收費 】</span>
-        </div>
-        <div class="notice-sub">
-            ✦ 本網站所有工具「完全不收取任何費用」 ✦ <br>
-            <strong>若有人聲稱代操作、收費、要求付款，一律是詐騙，與本網頁無關。</strong><br>
-            請同仁切勿理會，並提醒周邊夥伴 📢
-        </div>
-    </div>
-
-    <!-- 橫式流程 ① → ② → ③ -->
-    <div class="steps-horizontal">
-        <!-- 步驟 1 -->
-        <div class="step-card" data-step="1">
-            <div class="step-header">
-                <div class="step-title-group">
-                    <div class="step-number">01</div>
-                    <div class="step-name">經歷區間選擇器</div>
-                </div>
-                <div class="step-desc">上傳 Excel ｜ 抓取 HR_CD 與 ACTUAL_START_DT 區間</div>
-            </div>
-            <div class="iframe-wrapper">
-                <iframe class="tool-iframe" src="https://thankscal.github.io/mechexperience/" title="180經歷選擇器"></iframe>
-            </div>
-        </div>
-
-        <!-- 箭頭 -->
-        <div class="arrow-connector">➡</div>
-
-        <!-- 步驟 2 -->
-        <div class="step-card" data-step="2">
-            <div class="step-header">
-                <div class="step-title-group">
-                    <div class="step-number">02</div>
-                    <div class="step-name">QP 模板提取器</div>
-                </div>
-                <div class="step-desc">上傳 .docx → 自動提取三頁完整 QP 模板</div>
-            </div>
-            <div class="iframe-wrapper">
-                <iframe class="tool-iframe" src="https://thankscal.github.io/docxdel/" title="QP提取工具"></iframe>
-            </div>
-        </div>
-
-        <div class="arrow-connector">➡</div>
-
-        <!-- 步驟 3 -->
-        <div class="step-card" data-step="3">
-            <div class="step-header">
-                <div class="step-title-group">
-                    <div class="step-number">03</div>
-                    <div class="step-name">工作經歷自動填表</div>
-                </div>
-                <div class="step-desc">上傳三頁 QP 模板 ＋ 工作經歷 Excel → 一鍵完成</div>
-            </div>
-            <div class="iframe-wrapper">
-                <iframe class="tool-iframe" src="https://thankscal.github.io/renewuse/" title="自動填表系統"></iframe>
-            </div>
-        </div>
-    </div>
-
-    <div class="flow-note">
-        <span>📁 ① 選取經歷區間</span>
-        <span>⚡ ➜</span>
-        <span>📄 ② 提取 QP 模板</span>
-        <span>⚡ ➜</span>
-        <span>✨ ③ 自動填表產生</span>
-    </div>
-
-    <div class="footer">
-        <p>⚡ 依序使用三個工具：① → ② → ③ 橫向完成工作經歷自動化流程</p>
-        <p class="free-reminder">🔒 再次提醒：RENEW 180 工具鏈「完全免費使用」，任何收費行為皆屬詐騙，請立即檢舉。</p>
-        <p style="margin-top: 0.8rem;">RENEW 180 · 跨世代團隊協作入口 · 簡潔 未來 橫向直覺</p>
+    <div class="notice-sub">
+        ✦ 本網站所有工具「完全不收取任何費用」 ✦ <br>
+        <strong>若有人聲稱代操作、收費、要求付款，一律是詐騙，與本網頁無關。</strong><br>
+        請同仁切勿理會，並提醒周邊夥伴 📢
     </div>
 </div>
+
+<!-- ========================================================= -->
+<!-- ④ 橫式三步驟 (含 iframe 展示)                           -->
+<!-- ========================================================= -->
+<div class="steps-horizontal">
+
+    <!-- 步驟 1 -->
+    <div class="step-card" data-step="1">
+        <div class="step-header">
+            <div class="step-title-group">
+                <div class="step-number">01</div>
+                <div class="step-name">經歷區間選擇器</div>
+            </div>
+            <div class="step-desc">上傳 Excel ｜ 抓取 HR_CD 與 ACTUAL_START_DT 區間</div>
+        </div>
+        <div class="iframe-wrapper">
+            <iframe class="tool-iframe" src="https://thankscal.github.io/mechexperience/" title="180經歷選擇器"></iframe>
+        </div>
+    </div>
+
+    <!-- 箭頭 -->
+    <div class="arrow-connector">➡</div>
+
+    <!-- 步驟 2 -->
+    <div class="step-card" data-step="2">
+        <div class="step-header">
+            <div class="step-title-group">
+                <div class="step-number">02</div>
+                <div class="step-name">QP 模板提取器</div>
+            </div>
+            <div class="step-desc">上傳 .docx → 自動提取三頁完整 QP 模板</div>
+        </div>
+        <div class="iframe-wrapper">
+            <iframe class="tool-iframe" src="https://thankscal.github.io/docxdel/" title="QP提取工具"></iframe>
+        </div>
+    </div>
+
+    <!-- 箭頭 -->
+    <div class="arrow-connector">➡</div>
+
+    <!-- 步驟 3 -->
+    <div class="step-card" data-step="3">
+        <div class="step-header">
+            <div class="step-title-group">
+                <div class="step-number">03</div>
+                <div class="step-name">工作經歷自動填表</div>
+            </div>
+            <div class="step-desc">上傳三頁 QP 模板 ＋ 工作經歷 Excel → 一鍵完成</div>
+        </div>
+        <div class="iframe-wrapper">
+            <iframe class="tool-iframe" src="https://thankscal.github.io/renewuse/" title="自動填表系統"></iframe>
+        </div>
+    </div>
+
+</div>
+<!-- /steps-horizontal -->
+
+<!-- 流程小標 -->
+<div class="flow-note">
+    <span>📁 ① 選取經歷區間</span>
+    <span>⚡ ➜</span>
+    <span>📄 ② 提取 QP 模板</span>
+    <span>⚡ ➜</span>
+    <span>✨ ③ 自動填表產生</span>
+</div>
+
+<!-- ========================================================= -->
+<!-- ⑤ Footer                                                -->
+<!-- ========================================================= -->
+<div class="footer">
+    <p>⚡ 依序使用三個工具：① → ② → ③ 橫向完成工作經歷自動化流程</p>
+    <p class="free-reminder">🔒 再次提醒：RENEW 180 工具鏈「完全免費使用」，任何收費行為皆屬詐騙，請立即檢舉。</p>
+    <p style="margin-top: 0.8rem;">RENEW 180 · 跨世代團隊協作入口 · 簡潔 未來 橫向直覺</p>
+</div>
+
+</div>
+<!-- /container -->
+
 <script>
-    // iframe 載入輔助，確保背景色
-    document.querySelectorAll('.tool-iframe').forEach(iframe => {
+    // 確保 iframe 載入後背景為白色
+    document.querySelectorAll('.tool-iframe').forEach(function(iframe) {
         iframe.addEventListener('load', function() {
-            try { iframe.style.backgroundColor = '#ffffff'; } catch(e) {}
+            try {
+                iframe.style.backgroundColor = '#ffffff';
+            } catch (e) { /* 略 */ }
         });
     });
 </script>
+
 </body>
 </html>
