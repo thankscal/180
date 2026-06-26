@@ -89,14 +89,14 @@
             }
         }
 
-        /* ===== 頂部三大連結卡片 (最上面) ===== */
+        /* ===== 頂部三大連結卡片 (置於免費聲明下方) ===== */
         .quick-links {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: stretch;
             gap: 1.5rem;
-            margin-bottom: 2rem;
+            margin: 1.5rem 0 2rem 0;  /* 調整與上下區塊的距離 */
             flex-wrap: wrap;
         }
 
@@ -279,7 +279,7 @@
 
         /* ===== 免費聲明 ===== */
         .free-notice {
-            margin: 1.2rem auto 2rem auto;
+            margin: 1.2rem auto 1.0rem auto; /* 下邊距縮小，讓下方連結更靠近 */
             background: var(--warning-bg);
             backdrop-filter: blur(12px);
             border: 2px solid var(--warning-border);
@@ -567,10 +567,32 @@
     <div class="container">
 
         <!-- ========================================================= -->
-        <!-- ① 最上面：三個大連結卡片 (快速入口)                        -->
+        <!-- ① Hero 標題                                              -->
+        <!-- ========================================================= -->
+        <div class="hero">
+            <h1>⟡ RENEW 180 ⟡</h1>
+            <div class="tagline">工作經歷整合入口 · 橫向流程三部曲</div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- ② 免費防詐騙聲明 (永久免費提示框)                        -->
+        <!-- ========================================================= -->
+        <div class="free-notice">
+            <div>
+                <span class="notice-icon">🚨🔔⚠️</span>
+                <span class="notice-text">【 永久免費 · 絕不收費 】</span>
+            </div>
+            <div class="notice-sub">
+                ✦ 本網站所有工具「完全不收取任何費用」 ✦ <br>
+                <strong>若有人聲稱代操作、收費、要求付款，一律是詐騙，與本網頁無關。</strong><br>
+                請同仁切勿理會，並提醒周邊夥伴 📢
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- ③ 三大連結卡片 (現在放在免費聲明正下方)                  -->
         <!-- ========================================================= -->
         <div class="quick-links">
-
             <!-- 卡片 1 -->
             <a class="quick-link-card" data-step="1"
             href="https://thankscal.github.io/mechexperience/"
@@ -609,32 +631,8 @@
     <span class="ql-url">thankscal.github.io/renewuse/</span>
     <span class="ql-badge">↗ 新視窗開啟</span>
 </a>
-
 </div>
 <!-- /quick-links -->
-
-<!-- ========================================================= -->
-<!-- ② Hero 標題                                             -->
-<!-- ========================================================= -->
-<div class="hero">
-    <h1>⟡ RENEW 180 ⟡</h1>
-    <div class="tagline">工作經歷整合入口 · 橫向流程三部曲</div>
-</div>
-
-<!-- ========================================================= -->
-<!-- ③ 免費防詐騙聲明                                        -->
-<!-- ========================================================= -->
-<div class="free-notice">
-    <div>
-        <span class="notice-icon">🚨🔔⚠️</span>
-        <span class="notice-text">【 永久免費 · 絕不收費 】</span>
-    </div>
-    <div class="notice-sub">
-        ✦ 本網站所有工具「完全不收取任何費用」 ✦ <br>
-        <strong>若有人聲稱代操作、收費、要求付款，一律是詐騙，與本網頁無關。</strong><br>
-        請同仁切勿理會，並提醒周邊夥伴 📢
-    </div>
-</div>
 
 <!-- ========================================================= -->
 <!-- ④ 橫式三步驟 (含 iframe 展示)                           -->
